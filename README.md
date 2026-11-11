@@ -51,3 +51,4 @@ Existing skills with the same name are moved to `~/.claude/skills/.backup-<date>
 
 Put each one in `custom/<name>/SKILL.md` (+ any files it uses), commit, push. Everyone who re-runs
 the one-liner gets it. Set `KIT_REPO` at the top of `install.sh` to this repo's `owner/name`.
+# dylan-claude-skills-list

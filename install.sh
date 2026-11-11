@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Claude Code skills kit — installs the video + Meta-ads skill set in one go.
 #
-#   curl -fsSL https://raw.githubusercontent.com/yourname/claude-skills-kit/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/shanebenjamindev/dylan-claude-skills-list/main/install.sh | bash
 #
 # Every skill is pulled from its ORIGINAL repo at a pinned commit (nothing third-party is
 # re-hosted here), then copied into ~/.claude/skills so every Claude Code project can use it.
@@ -13,7 +13,7 @@
 #   KIT_REPO=owner/repo        where this kit lives (for the custom/ skills folder)
 set -euo pipefail
 
-KIT_REPO="${KIT_REPO:-yourname/claude-skills-kit}"
+KIT_REPO="${KIT_REPO:-shanebenjamindev/dylan-claude-skills-list}"
 KIT_REF="${KIT_REF:-main}"
 DEST="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 SKILL_GROUPS="${SKILL_GROUPS:-remotion hyperframes video marketing custom}"
@@ -126,7 +126,7 @@ if want marketing; then
 fi
 
 # ---- Your own skills (custom/ folder of this kit) ----------------------------------------
-if want custom && [ "$KIT_REPO" != "yourname/claude-skills-kit" ]; then
+if want custom; then
   if d=$(fetch "$KIT_REPO" "$KIT_REF" "/custom/" 2>/dev/null) && [ -d "$d/custom" ]; then
     for sd in "$d"/custom/*/; do [ -d "$sd" ] && place "$sd" "$(basename "$sd")"; done
     ok "custom skills from $KIT_REPO"

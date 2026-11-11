@@ -5,7 +5,7 @@ One command installs the full skill set used to produce 9:16 Meta video ads with
 so every project on the machine can use it.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourname/claude-skills-kit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/shanebenjamindev/dylan-claude-skills-list/main/install.sh | bash
 ```
 
 Then open a **new** Claude Code session.
@@ -31,7 +31,7 @@ repo at the commit pinned at the top of `install.sh`. Bump a `*_REF` line to upd
 
 ```bash
 # only some groups
-curl -fsSL https://raw.githubusercontent.com/yourname/claude-skills-kit/main/install.sh | SKILL_GROUPS="video marketing" bash
+curl -fsSL https://raw.githubusercontent.com/shanebenjamindev/dylan-claude-skills-list/main/install.sh | SKILL_GROUPS="video marketing" bash
 
 # install somewhere else
 curl -fsSL …/install.sh | CLAUDE_SKILLS_DIR=./.claude/skills bash
@@ -51,4 +51,3 @@ Existing skills with the same name are moved to `~/.claude/skills/.backup-<date>
 
 Put each one in `custom/<name>/SKILL.md` (+ any files it uses), commit, push. Everyone who re-runs
 the one-liner gets it. Set `KIT_REPO` at the top of `install.sh` to this repo's `owner/name`.
-# dylan-claude-skills-list

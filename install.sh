@@ -8,7 +8,7 @@
 #
 # Options (env vars):
 #   SKILL_GROUPS="video marketing"   only install some groups (default: all)
-#                              groups: remotion hyperframes video marketing custom
+#                              groups: remotion hyperframes video marketing coding custom
 #   CLAUDE_SKILLS_DIR=...      install somewhere else (default: ~/.claude/skills)
 #   KIT_REPO=owner/repo        where this kit lives (for the custom/ skills folder)
 set -euo pipefail
@@ -16,7 +16,7 @@ set -euo pipefail
 KIT_REPO="${KIT_REPO:-shanebenjamindev/dylan-claude-skills-list}"
 KIT_REF="${KIT_REF:-main}"
 DEST="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
-SKILL_GROUPS="${SKILL_GROUPS:-remotion hyperframes video marketing custom}"
+SKILL_GROUPS="${SKILL_GROUPS:-remotion hyperframes video marketing coding custom}"
 
 # ---- pinned upstream sources (bump these to update) -----------------------------------
 REMOTION_REPO="remotion-dev/remotion";            REMOTION_REF="9ef7bd9096b69af2a010ae9dbd9617f61f02ed78"
@@ -25,10 +25,12 @@ HF_REPO="heygen-com/hyperframes";                 HF_REF="9e346f9bb793fe53684d74
 CV_REPO="AgriciDaniel/claude-video";              CV_REF="4253a2b7c6db74ac809429a4c69075b55e8a77ff"
 MKT_REPO="coreyhaines31/marketingskills";         MKT_REF="3e729622e3de0c82abdb906190d91f9018045872"
 META_REPO="kostja94/marketing-skills";            META_REF="ac823a127782355339f21aef6c87f1ccff751c84"
+PONY_REPO="DietrichGebert/ponytail";              PONY_REF="96608e078b2d5ea607c5c3b8b5a54d1c1fba6846"   # v5.3.3
 
 REMOTION_SKILLS="remotion-best-practices remotion-captions remotion-create remotion-docs remotion-interactivity remotion-license remotion-maps remotion-markup remotion-multimedia remotion-render remotion-saas remotion-studio remotion-upgrade"
 HF_SKILLS="hyperframes hyperframes-cli hyperframes-registry media-use figma remotion-to-hyperframes reverse-any-video slideshow style-sampling"
 MKT_SKILLS="ad-creative ads copywriting marketing-psychology"
+PONY_SKILLS="ponytail ponytail-audit ponytail-review ponytail-debt ponytail-gain ponytail-help"
 
 # ---- helpers ---------------------------------------------------------------------------
 c_ok="\033[32m"; c_dim="\033[2m"; c_warn="\033[33m"; c_off="\033[0m"
@@ -123,6 +125,14 @@ if want marketing; then
   d=$(fetch "$META_REPO" "$META_REF" "/skills/paid-ads/platforms/meta-ads/")
   place "$d/skills/paid-ads/platforms/meta-ads" "meta-ads"
   ok "Marketing + Meta ads"
+fi
+
+# ---- Coding: ponytail (skills only; the upstream plugin's hooks are not installed) -----------
+if want coding; then
+  say "${c_dim}Ponytail coding skills (DietrichGebert/ponytail v5.3.3)…${c_off}"
+  d=$(fetch "$PONY_REPO" "$PONY_REF" "/skills/" "/LICENSE")
+  for s in $PONY_SKILLS; do place "$d/skills/$s" "$s"; cp "$d/LICENSE" "$DEST/$s/LICENSE" 2>/dev/null || true; done
+  ok "Ponytail (6 skills)"
 fi
 
 # ---- Your own skills (custom/ folder of this kit) ----------------------------------------

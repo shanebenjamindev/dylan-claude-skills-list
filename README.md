@@ -10,7 +10,7 @@ curl -fsSL https://raw.githubusercontent.com/shanebenjamindev/dylan-claude-skill
 
 Then open a **new** Claude Code session.
 
-## What gets installed (45 skills)
+## What gets installed (51 skills)
 
 | Group | Skills | Source (pinned commit) | License |
 |---|---|---|---|
@@ -20,9 +20,14 @@ Then open a **new** Claude Code session.
 | `video` | claude-video + 15 sub-skills (edit, caption, export, shorts, promo, audio, transcode, analyze…) | [AgriciDaniel/claude-video](https://github.com/AgriciDaniel/claude-video) | MIT |
 | `marketing` | ad-creative, ads, copywriting, marketing-psychology, marketing-video* | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | MIT |
 | | meta-ads | [kostja94/marketing-skills](https://github.com/kostja94/marketing-skills) | — |
+| `coding` | ponytail, ponytail-audit, ponytail-review, ponytail-debt, ponytail-gain, ponytail-help | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) v5.3.3 | MIT |
 | `custom` | anything you put in `custom/<skill-name>/SKILL.md` in this repo | this repo | yours |
 
 \* upstream `video` is installed as `marketing-video` so it doesn't clash with claude-video's `/video`.
+
+Ponytail is installed as plain skills (`/ponytail`, `/ponytail-review`, …), without the upstream plugin's
+hooks. For the always-on version (auto-activates every session, status line, task ledger), install the
+plugin instead: `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail`.
 
 Nothing third-party is stored in this repo: the script downloads each skill from its original
 repo at the commit pinned at the top of `install.sh`. Bump a `*_REF` line to update.
